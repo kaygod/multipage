@@ -1,0 +1,19 @@
+{
+  "name": "multipage",
+  "version": "1.0.0",
+  "description": "使用webpack构建多页应用的模板",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaygod/multipage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaygod/multipage/issues"
+  },
+  "homepage": "https://github.com/kaygod/multipage#readme"
+}
