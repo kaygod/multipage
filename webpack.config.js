@@ -28,6 +28,13 @@ module.exports={
                      } 
                 },"sass-loader","postcss-loader"
              ]
+         },
+         {
+             test:/\.js$/,
+             include: [
+                path.resolve(__dirname, 'src')
+            ],
+            use:"babel-loader"
          }
      ]
    },
@@ -38,9 +45,17 @@ module.exports={
             name: 'style',
             test: /\.scss$/,
             chunks: 'all',
-            enforce: true
+            enforce: true,
+            priority:-20
+        },
+        globalVendor: {
+            name: 'global',
+            test: /\global.scss$/,
+            chunks: 'all',
+            enforce: true,
+            priority:-10
         }
-        }
+     }
     }
    }, 
    output:{
@@ -71,7 +86,7 @@ function getPlugins(){
         if(chunk != "common"){ //是公共的js文件就不单独创建页面
           
             let obj={
-                chunks:[chunk,"common","style"],
+                chunks:[chunk,"common","style","global"],
                 template:v,
                 filename:path.resolve(__dirname,`dist/html/${chunk}.html`)
             }
