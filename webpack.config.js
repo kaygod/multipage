@@ -7,7 +7,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
+
+const TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 const plugins=getPlugins();
 
@@ -18,7 +20,7 @@ module.exports={
    module:{    
      rules:[
          {
-             test:/\.scss$/,
+             test:/\.(scss|css)$/,
              use:[
                 MiniCssExtractPlugin.loader,
                 {
@@ -35,12 +37,32 @@ module.exports={
                 path.resolve(__dirname, 'src')
             ],
             use:"babel-loader"
+         },
+         {
+            test:/\.(eot|ttf|svg|woff|woff2)$/, 
+            use:[{
+               loader:"file-loader",
+               options:{
+                outputPath:"../fonts"
+               }
+            }] 
          }
      ]
    },
    optimization: {
     splitChunks: {
         cacheGroups: {
+        library: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+        },
+        commons: {
+            test: /((common)|(common\.js))$/,
+            name: 'common',
+            chunks: 'all',
+            enforce: true,
+        },  
         styles: {
             name: 'style',
             test: /\.scss$/,
@@ -50,7 +72,7 @@ module.exports={
         },
         globalVendor: {
             name: 'global',
-            test: /\global.scss$/,
+            test:  /((global\.scss)|(\.css))$/,
             chunks: 'all',
             enforce: true,
             priority:-10
@@ -76,7 +98,11 @@ function getPlugins(){
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: `../css/[name].[hash].css`
-        })
+        }),
+        new TransferWebpackPlugin([
+            { from: 'src/imgs', to: '../imgs' },
+            { from: 'src/public', to:'../public'}
+        ])
     ]
    
     let htmlArray = glob.sync("./src/html/*.html");
@@ -86,7 +112,7 @@ function getPlugins(){
         if(chunk != "common"){ //是公共的js文件就不单独创建页面
           
             let obj={
-                chunks:[chunk,"common","style","global"],
+                chunks:["vendors",chunk,"common","style","global"],
                 template:v,
                 filename:path.resolve(__dirname,`dist/html/${chunk}.html`)
             }
@@ -97,7 +123,6 @@ function getPlugins(){
 
         }
     })
-
 
     return plugins;
 }
@@ -110,7 +135,10 @@ function getEntry(){
      let files= glob.sync("./src/js/*.js"),arr={};
       
      files.forEach((v)=>{
-       arr[entryJsHandler(v)]=v;
+       let chunk=entryJsHandler(v);
+       if(chunk != "common"){
+          arr[chunk]=v;
+       }
      })
 
      return arr;
