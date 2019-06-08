@@ -1,0 +1,70 @@
+Arguments: 
+  D:\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add webpack-dev-serve -D
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\java\jdk1.7\bin;D:\java\jdk1.7\jre\bin;D:\mysql\MySQL Server 5.5\bin;D:\secureCRT\;D:\开发软件\Git\cmd;D:\TortoiseGit\bin;D:\work\maven\apache-maven-3.0.5\bin;D:\nodejs\;D:\开发软件\Microsoft VS Code\bin;C:\Users\Administrator\AppData\Roaming\npm
+
+Yarn version: 
+  1.10.1
+
+Node version: 
+  10.12.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: connect ETIMEDOUT 104.16.27.35:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1113:14)
+
+npm manifest: 
+  {
+    "name": "multipage",
+    "version": "1.0.0",
+    "description": "使用webpack构建多页应用的模板",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "bundle": "webpack --config webpack.config.js",
+      "dev":"webpack --config webpack.dev.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/kaygod/multipage.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/kaygod/multipage/issues"
+    },
+    "homepage": "https://github.com/kaygod/multipage#readme",
+    "devDependencies": {
+      "@babel/core": "^7.4.5",
+      "@babel/plugin-transform-runtime": "^7.4.4",
+      "@babel/polyfill": "^7.4.4",
+      "@babel/preset-env": "^7.4.5",
+      "autoprefixer": "^9.6.0",
+      "babel-loader": "^8.0.6",
+      "clean-webpack-plugin": "^3.0.0",
+      "css-loader": "^2.1.1",
+      "file-loader": "^3.0.1",
+      "glob": "^7.1.4",
+      "html-webpack-plugin": "^3.2.0",
+      "mini-css-extract-plugin": "^0.7.0",
+      "node-sass": "^4.12.0",
+      "postcss-loader": "^3.0.0",
+      "sass-loader": "^7.1.0",
+      "transfer-webpack-plugin": "^0.1.4",
+      "webpack": "^4.32.2",
+      "webpack-cli": "^3.3.2"
+    },
+    "dependencies": {
+      "jquery": "^3.4.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

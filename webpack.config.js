@@ -28,7 +28,7 @@ module.exports={
                     options:{
                         importLoaders:2 //这个在scss文件通过@import引入其他scss的时候让其先走后面的2个loader,保证执行顺序
                      } 
-                },"sass-loader","postcss-loader"
+                },"sass-loader"
              ]
          },
          {
@@ -49,6 +49,7 @@ module.exports={
          }
      ]
    },
+   devtool:"source-map",
    optimization: {
     splitChunks: {
         cacheGroups: {
@@ -81,7 +82,7 @@ module.exports={
     }
    }, 
    output:{
-     filename:"[name].[hash].js",
+     filename:"[name].js",
      path:path.resolve(__dirname,"dist/js")
    },
    plugins:plugins
@@ -97,7 +98,7 @@ function getPlugins(){
     let plugins=[
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: `../css/[name].[hash].css`
+            filename: `../css/[name].css`
         }),
         new TransferWebpackPlugin([
             { from: 'src/imgs', to: '../imgs' },
