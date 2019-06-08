@@ -3,8 +3,7 @@
 > * 简介
 >     >  本例是一个用webpack构建多页面应用的脚手架工具,集成了sass,babel可直接使用最新的语法特性编写css或者js.整个项目的源代码全部位于src目录中.其中fonts为字体图标文件夹,public是可能需要用到的一些静态资源文件夹,比如一些json文件.如果需要创建一个页面,那么需要在src下面html,css,js三个文件夹中分别创建.经过打包最终会在dist目录下生成html,js,css相对应的文件夹.其中css文件最终会被合并.
 > * 使用
->     > 1.将项目clone到本地,运行 npm install
-      > 2.运行npm run dev,启动开发模式.接着可以在dist目录下启动一个http-server服务器,将静态资源启动起来.编写src源代码,会触发重新打包编译,刷新浏览器就可以看到
+>     > 1.将项目clone到本地,运行 npm install  2.运行npm run dev,启动开发模式.接着可以在dist目录下启动一个http-server服务器,将静态资源启动起来.编写src源代码,会触发重新打包编译,刷新浏览器就可以看到
       效果.
       > 3.项目开发完毕之后,先删除dist目录,然后运行npm run bundle,即可得到最终的打包文件
 > * 注意事项
